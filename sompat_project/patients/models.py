@@ -8,7 +8,15 @@ class Pacient(models.Model):
         return self.som_id
 
 class Aparat(models.Model):
-    model = models.CharField(max_length=128, unique=True)
+    RES_IBREEZE_AUTO_CPAP = 'RES_IBREEZE_AUTO_CPAP'
+    LOEWENSTEIN_PRISMA_AUTO_CPAP = 'LOEWENSTEIN_PRISMA_AUTO_CPAP'
+
+    APARATI_CHOICES = (
+        (RES_IBREEZE_AUTO_CPAP, 'Resvent iBreeze Auto CPAP'),
+        (LOEWENSTEIN_PRISMA_AUTO_CPAP, 'Loewenstein Prisma Auto CPAP')
+    )
+
+    model = models.CharField(max_length=128, choices=APARATI_CHOICES, default=RES_IBREEZE_AUTO_CPAP)
     sn = models.CharField(max_length=128, unique=True)
     aktiven = models.BooleanField(default=False)
 
